@@ -539,7 +539,7 @@ Captures :
 
 ![Token stocke en cookie HTTP-only](docs/screenshots/secure/secure-07-token-httponly-cookie.png)
 
-
+![Token stocke en cookie HTTP-only](docs/screenshots/secure/secure-01-user-login-tickets.png)
 
 
 Le capture montre que `localStorage` ne contient plus de token et que le token est stocke dans un cookie `HttpOnly`.
@@ -661,11 +661,8 @@ if (isAdmin(req.user)) {
 
 Captures :
 
-Capture suppression du champ role a ajouter :
 
-```text
-docs/screenshots/secure/secure-04-register-role-removed.png
-```
+![Acces admin bloque pour un utilisateur simple](docs/screenshots/secure/secure-04-register-role-removed.png)
 
 ![Acces admin bloque pour un utilisateur simple](docs/screenshots/secure/secure-08-admin-access-blocked-user.png)
 
