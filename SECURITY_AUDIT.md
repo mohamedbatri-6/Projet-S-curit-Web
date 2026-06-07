@@ -539,19 +539,13 @@ Captures :
 
 ![Token stocke en cookie HTTP-only](docs/screenshots/secure/secure-07-token-httponly-cookie.png)
 
-Capture rate limiting a ajouter :
+
 
 ```text
-docs/screenshots/secure/secure-1-login-rate-limit.png
-```
 
 La premiere capture montre que `localStorage` ne contient plus de token et que le token est stocke dans un cookie `HttpOnly`.
-
-La deuxieme capture montre que plusieurs tentatives de connexion declenchent :
-
-```text
-Too many login attempts. Please try again later.
 ```
+
 
 ## VULN-05 - Mass Assignment / elevation de privilege
 
