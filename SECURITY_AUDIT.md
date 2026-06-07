@@ -542,7 +542,7 @@ Captures :
 Capture rate limiting a ajouter :
 
 ```text
-docs/screenshots/secure/secure-10-login-rate-limit.png
+docs/screenshots/secure/secure-1-login-rate-limit.png
 ```
 
 La premiere capture montre que `localStorage` ne contient plus de token et que le token est stocke dans un cookie `HttpOnly`.
