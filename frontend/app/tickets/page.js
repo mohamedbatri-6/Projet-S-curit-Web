@@ -34,7 +34,7 @@ export default function TicketsPage() {
         </div>
         <div className="nav">
           <Link className="btn primary" href="/tickets/new">Nouveau ticket</Link>
-          <Link className="btn" href="/admin">Admin</Link>
+          {user?.role === 'admin' && <Link className="btn" href="/admin">Admin</Link>}
           <button className="btn" onClick={logout}>Deconnexion</button>
         </div>
       </div>
@@ -63,4 +63,3 @@ export default function TicketsPage() {
     </main>
   );
 }
-

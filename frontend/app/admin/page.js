@@ -38,14 +38,14 @@ export default function AdminPage() {
                 <span>Nom</span>
                 <span>Email</span>
                 <span>Role</span>
-                <span>Mot de passe</span>
+                <span>Creation</span>
               </div>
               {stats.users.map((user) => (
                 <div className="row" key={user._id}>
                   <span>{user.name}</span>
                   <span>{user.email}</span>
                   <span>{user.role}</span>
-                  <span>{user.password}</span>
+                  <span>{new Date(user.createdAt).toLocaleDateString()}</span>
                 </div>
               ))}
             </div>

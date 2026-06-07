@@ -14,10 +14,9 @@ export default function HomePage() {
       <section className="panel">
         <h1>Application de tickets de support</h1>
         <p className="muted">
-          Version vulnerable pour le projet final de securite web avancee.
+          Version securisee pour le projet final de securite web avancee.
         </p>
       </section>
     </main>
   );
 }
-

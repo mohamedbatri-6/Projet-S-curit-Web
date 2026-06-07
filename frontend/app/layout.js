@@ -2,7 +2,7 @@ import './globals.css';
 
 export const metadata = {
   title: 'Support Tickets',
-  description: 'Version vulnerable pour projet securite web'
+  description: 'Version securisee pour projet securite web'
 };
 
 export default function RootLayout({ children }) {
@@ -12,4 +12,3 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
-

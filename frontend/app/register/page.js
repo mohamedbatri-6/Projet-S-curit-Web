@@ -8,8 +8,7 @@ export default function RegisterPage() {
   const [form, setForm] = useState({
     name: '',
     email: '',
-    password: '',
-    role: 'user'
+    password: ''
   });
   const [error, setError] = useState('');
 
@@ -24,6 +23,7 @@ export default function RegisterPage() {
     try {
       const response = await fetch(`${API_URL}/api/auth/register`, {
         method: 'POST',
+        credentials: 'include',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form)
       });
@@ -33,7 +33,7 @@ export default function RegisterPage() {
         throw new Error(JSON.stringify(data, null, 2));
       }
 
-      setSession(data.token, data.user);
+      setSession(data.user);
       window.location.href = '/tickets';
     } catch (err) {
       setError(err.message);
@@ -56,13 +56,6 @@ export default function RegisterPage() {
           <span>Mot de passe</span>
           <input type="password" value={form.password} onChange={(event) => update('password', event.target.value)} />
         </label>
-        <label className="field">
-          <span>Role</span>
-          <select value={form.role} onChange={(event) => update('role', event.target.value)}>
-            <option value="user">user</option>
-            <option value="admin">admin</option>
-          </select>
-        </label>
         {error && <pre className="error">{error}</pre>}
         <button className="btn primary" type="submit">Creer le compte</button>
         <Link href="/login">Deja inscrit ?</Link>
@@ -70,4 +63,3 @@ export default function RegisterPage() {
     </main>
   );
 }
-

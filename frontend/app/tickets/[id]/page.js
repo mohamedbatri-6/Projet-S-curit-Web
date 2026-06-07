@@ -76,25 +76,29 @@ export default function TicketDetailPage() {
               <span className="badge">{data.ticket.priority}</span>
               <span className="badge">{data.ticket.owner?.email}</span>
             </div>
-            <div className="ticket-body" dangerouslySetInnerHTML={{ __html: data.ticket.description }} />
-            <p className="muted">Note interne: {data.ticket.internalNote}</p>
+            <p className="ticket-body">{data.ticket.description}</p>
+            {user?.role === 'admin' && data.ticket.internalNote && (
+              <p className="muted">Note interne: {data.ticket.internalNote}</p>
+            )}
           </article>
 
-          <form className="panel nav" onSubmit={saveStatus}>
-            <select value={status} onChange={(event) => setStatus(event.target.value)}>
-              <option value="open">open</option>
-              <option value="in_progress">in_progress</option>
-              <option value="closed">closed</option>
-            </select>
-            <button className="btn" type="submit">Changer le statut</button>
-          </form>
+          {user?.role === 'admin' && (
+            <form className="panel nav" onSubmit={saveStatus}>
+              <select value={status} onChange={(event) => setStatus(event.target.value)}>
+                <option value="open">open</option>
+                <option value="in_progress">in_progress</option>
+                <option value="closed">closed</option>
+              </select>
+              <button className="btn" type="submit">Changer le statut</button>
+            </form>
+          )}
 
           <section className="panel stack">
             <h2>Commentaires</h2>
             {data.comments.map((item) => (
               <div className="card stack" key={item._id}>
                 <div className="muted">{item.author?.email} - internal={String(item.isInternal)}</div>
-                <div dangerouslySetInnerHTML={{ __html: item.body }} />
+                <p>{item.body}</p>
               </div>
             ))}
 

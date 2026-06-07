@@ -16,6 +16,7 @@ export default function LoginPage() {
     try {
       const response = await fetch(`${API_URL}/api/auth/login`, {
         method: 'POST',
+        credentials: 'include',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })
       });
@@ -25,7 +26,7 @@ export default function LoginPage() {
         throw new Error(JSON.stringify(data, null, 2));
       }
 
-      setSession(data.token, data.user);
+      setSession(data.user);
       window.location.href = '/tickets';
     } catch (err) {
       setError(err.message);
@@ -51,4 +52,3 @@ export default function LoginPage() {
     </main>
   );
 }
-

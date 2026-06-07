@@ -8,9 +8,7 @@ export default function NewTicketPage() {
   const [form, setForm] = useState({
     title: '',
     description: '',
-    priority: 'medium',
-    status: 'open',
-    internalNote: ''
+    priority: 'medium'
   });
   const [error, setError] = useState('');
 
@@ -57,22 +55,9 @@ export default function NewTicketPage() {
             <option value="high">high</option>
           </select>
         </label>
-        <label className="field">
-          <span>Status</span>
-          <select value={form.status} onChange={(event) => update('status', event.target.value)}>
-            <option value="open">open</option>
-            <option value="in_progress">in_progress</option>
-            <option value="closed">closed</option>
-          </select>
-        </label>
-        <label className="field">
-          <span>Note interne</span>
-          <input value={form.internalNote} onChange={(event) => update('internalNote', event.target.value)} />
-        </label>
         {error && <pre className="error">{error}</pre>}
         <button className="btn primary" type="submit">Creer</button>
       </form>
     </main>
   );
 }
-

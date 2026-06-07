@@ -14,9 +14,9 @@ await Promise.all([
 ]);
 
 const [user1, user2, admin] = await User.create([
-  { name: 'Alice User', email: 'user1@example.com', password: 'password123', role: 'user' },
-  { name: 'Bob User', email: 'user2@example.com', password: 'password123', role: 'user' },
-  { name: 'Admin Support', email: 'admin@example.com', password: 'admin123', role: 'admin' }
+  { name: 'Alice User', email: 'user1@example.com', password: 'User1Secure!2026', role: 'user' },
+  { name: 'Bob User', email: 'user2@example.com', password: 'User2Secure!2026', role: 'user' },
+  { name: 'Admin Support', email: 'admin@example.com', password: 'AdminSecure!2026', role: 'admin' }
 ]);
 
 const [ticket1, ticket2, ticket3] = await Ticket.create([
@@ -40,12 +40,12 @@ const [ticket1, ticket2, ticket3] = await Ticket.create([
   },
   {
     title: 'Demande de suivi de dossier',
-    description: '<script>alert("Stored XSS from ticket description")</script>',
+    description: 'Je souhaite obtenir une mise a jour sur le suivi de mon dossier.',
     priority: 'low',
     status: 'open',
     owner: user1._id,
     assignedTo: null,
-    internalNote: 'Ce ticket sert de preuve pour la faille XSS stockee.'
+    internalNote: 'Demande simple de suivi.'
   }
 ]);
 
@@ -59,7 +59,7 @@ await Comment.create([
   {
     ticket: ticket2._id,
     author: user2._id,
-    body: '<img src=x onerror=alert("Stored XSS from comment")>',
+    body: 'Merci pour les informations.',
     isInternal: false
   },
   {
@@ -72,9 +72,9 @@ await Comment.create([
 
 console.log('Seed complete');
 console.table([
-  { role: 'user', email: user1.email, password: user1.password },
-  { role: 'user', email: user2.email, password: user2.password },
-  { role: 'admin', email: admin.email, password: admin.password }
+  { role: 'user', email: user1.email, password: 'User1Secure!2026' },
+  { role: 'user', email: user2.email, password: 'User2Secure!2026' },
+  { role: 'admin', email: admin.email, password: 'AdminSecure!2026' }
 ]);
 
 await mongoose.disconnect();

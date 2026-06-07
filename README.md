@@ -2,7 +2,7 @@
 
 Projet final - Securite web avancee.
 
-Cette branche contient la version volontairement vulnerable d'une application de tickets de support.
+Cette branche contient la version securisee d'une application de tickets de support.
 
 ## Stack
 
@@ -15,7 +15,7 @@ Cette branche contient la version volontairement vulnerable d'une application de
 ```text
 frontend/   Interface web Next.js
 backend/    API REST Express + MongoDB
-docs/       Notes de demonstration et captures a ajouter
+docs/       Notes de demonstration et captures
 ```
 
 ## Lancement
@@ -35,10 +35,10 @@ npm run dev
 ```bash
 cd frontend
 npm install
-npm run dev
+npm run dev -- -p 3001
 ```
 
-Frontend: http://localhost:3000
+Frontend: http://localhost:3001
 
 Backend: http://localhost:4000
 
@@ -46,9 +46,9 @@ Backend: http://localhost:4000
 
 | Role | Email | Mot de passe |
 | --- | --- | --- |
-| user | user1@example.com | password123 |
-| user | user2@example.com | password123 |
-| admin | admin@example.com | admin123 |
+| user | user1@example.com | User1Secure!2026 |
+| user | user2@example.com | User2Secure!2026 |
+| admin | admin@example.com | AdminSecure!2026 |
 
 ## Collections MongoDB
 
@@ -61,7 +61,7 @@ MongoDB cree les collections automatiquement au premier insert.
 | `_id` | ObjectId | genere par MongoDB |
 | `name` | String | Alice User |
 | `email` | String | user1@example.com |
-| `password` | String | password123 |
+| `password` | String hash bcrypt | masque dans les reponses API |
 | `role` | String | user ou admin |
 | `createdAt` | Date | automatique |
 | `updatedAt` | Date | automatique |
@@ -71,8 +71,8 @@ MongoDB cree les collections automatiquement au premier insert.
 | Champ | Type | Exemple |
 | --- | --- | --- |
 | `_id` | ObjectId | genere par MongoDB |
-| `title` | String | Probleme de connexion |
-| `description` | String | Je ne peux pas me connecter |
+| `title` | String | Demande de mise a jour du profil |
+| `description` | String | Je souhaite modifier les informations affichees |
 | `priority` | String | low, medium, high |
 | `status` | String | open, in_progress, closed |
 | `owner` | ObjectId ref users | utilisateur createur |
@@ -93,15 +93,16 @@ MongoDB cree les collections automatiquement au premier insert.
 | `createdAt` | Date | automatique |
 | `updatedAt` | Date | automatique |
 
-## Failles intentionnelles dans cette branche
+## Securisations appliquees dans cette branche
 
-Cette version est volontairement vulnerable et ne doit pas etre utilisee en production.
-
-- NoSQL injection sur `/api/auth/login`.
-- IDOR/BOLA sur `/api/tickets/:id`.
-- XSS stockee dans les descriptions et commentaires de tickets.
-- Authentification faible: mots de passe en clair, JWT faible, messages d'erreur trop precis, pas de rate limiting.
-- Mass assignment sur les mises a jour utilisateurs/tickets.
-- Information disclosure: erreurs detaillees, donnees utilisateur trop exposees, headers de securite absents.
-- CORS ouvert a toutes les origines.
-
+- mots de passe hashes avec bcrypt ;
+- authentification par cookie HTTP-only ;
+- validation stricte des identifiants ;
+- messages d'erreur generiques ;
+- rate limiting sur le login ;
+- controle ownership sur les tickets ;
+- route admin protegee par role ;
+- suppression du rendu HTML dangereux ;
+- filtrage des champs sensibles ;
+- headers HTTP via Helmet ;
+- CORS limite a l'origine frontend configuree.
