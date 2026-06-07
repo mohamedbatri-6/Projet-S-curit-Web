@@ -541,10 +541,9 @@ Captures :
 
 
 
-```text
 
-La premiere capture montre que `localStorage` ne contient plus de token et que le token est stocke dans un cookie `HttpOnly`.
-```
+Le capture montre que `localStorage` ne contient plus de token et que le token est stocke dans un cookie `HttpOnly`.
+
 
 
 ## VULN-05 - Mass Assignment / elevation de privilege
